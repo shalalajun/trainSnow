@@ -1,0 +1,76 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    overflow: hidden;
+    background : #b5d8e7;
+    font-size: 16px;
+}
+
+main
+{
+    width: 300px;
+    height: 400px;
+    background: tomato;
+}
+
+
+
+
+.title {
+    position: fixed;
+    top: 4%;
+    right: 2%;
+    color: #fff;
+    font-size: 9rem;
+    line-height: 14rem;
+}
+
+@media (min-width:800px) and (max-width:1600px)
+{
+    .title {
+        position: fixed;
+       
+        top: 4%;
+        right: 2%;
+        font-size: 6rem; 
+        line-height: 10rem;
+    }
+}
+
+@media (max-width: 800px) 
+{
+    .title {
+        position: fixed;
+        font-size: 3rem; 
+        top: 4%;
+        right: 2%;
+        line-height: 6rem;
+    }
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+    z-index: -1;
+}
+
+.cursor
+{
+    background: blue;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    top: 0;
+    bottom: 0
+}
