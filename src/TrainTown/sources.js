@@ -79,6 +79,12 @@ export default [
         type: 'gltfModel',
         path: 'models/Cat/pineTree.glb'
     },
+    
+    {
+        name: 'stone',
+        type: 'gltfModel',
+        path: 'models/Cat/stone.glb'
+    },
     {
         name: 'pineTreeTex',
         type: 'texture',

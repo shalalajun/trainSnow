@@ -15,6 +15,7 @@ export default class TestGirl
         this.camera = this.trainTown.camera.instance
         this.controls = this.trainTown.camera.controls
        
+        this.stone = this.resources.items.stone
 
         this.worldOctree
       
@@ -39,7 +40,7 @@ export default class TestGirl
     setOctree()
     {
         this.worldOctree = new Octree()
-        this.worldOctree.fromGraphNode(this.stone)
+        this.worldOctree.fromGraphNode(this.stoneModel)
         this.worldOctree.fromGraphNode(this.floor)
         
     }
@@ -51,9 +52,7 @@ export default class TestGirl
         this.model.scale.set(0.1,0.1,0.1)
      
         this.scene.add(this.model) 
-        //모델링이 두개여서 헷갈릴까봐 일단 세팅
-        // this.girl = this.model.getObjectByName('Girl_mesh');
-        // this.girl.scale.set(0.1,0.1,0.1)
+    
 
         this.box = new THREE.Box3().setFromObject(this.model)
         //console.log(this.model)
@@ -64,12 +63,20 @@ export default class TestGirl
         this.floor.rotation.x = -Math.PI * 0.5
         this.scene.add(this.floor)
 
-        this.stoneGeometry = new THREE.SphereGeometry(4,16,16)
-        this.stoneMaterial = new THREE.MeshBasicMaterial({color:"#222222"})
-        this.stone = new THREE.Mesh(this.stoneGeometry, this.stoneMaterial)
-        this.stone.position.set(8,-1,5)
-        this.scene.add(this.stone)
+        this.stoneModel = this.stone.scene
+        this.stoneModel.scale.set(5.0,5.0,5.0)
+        this.stoneModel.position.set(6,-0.5,5)
+        this.scene.add(this.stoneModel)
 
+        this.stoneModel.traverse((child)=>
+        {
+            if(child instanceof THREE.Mesh)
+            {
+                child.castShadow = true
+                child.receiveShadow = true
+            }
+        }
+        )
         //캡슐
         const height = this.box.max.y - this.box.min.y
         const diameter = this.box.max.z - this.box.min.z
